@@ -1,0 +1,16 @@
+#PHP Routing
+
+# Enable rewrite
+RewriteEngine On
+
+# Rewrite conditions to enable loading of images and css files:
+# If file exists load it
+RewriteCond %{REQUEST_FILENAME} !-f
+# If directory exists load it
+RewriteCond %{REQUEST_FILENAME} !-d
+# If "not found" re-route everything to the index page
+# and create a query string that will be the value of the variable $1
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+
+# Send every request to the index page, unless is a real file or a real folder, then open it.
+# Just works with apache web servers
